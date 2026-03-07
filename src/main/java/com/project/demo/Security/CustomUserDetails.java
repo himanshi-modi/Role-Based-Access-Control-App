@@ -3,6 +3,7 @@ package com.project.demo.Security;
 import com.project.demo.Entity.model.User;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -19,7 +20,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return  List.of(new SimpleGrantedAuthority("ROLE_"+ user.getRoles().name()));
     }
 
     @Override
