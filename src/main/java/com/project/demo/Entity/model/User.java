@@ -3,9 +3,22 @@ package com.project.demo.Entity.model;
 import com.project.demo.Entity.enums.Roles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
+
+
+@Getter
+@Setter
 @Entity
-public class User {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="users")
+public class User  {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -23,6 +36,8 @@ public class User {
 
 
     private Roles roles;
+
+
 
 
 
