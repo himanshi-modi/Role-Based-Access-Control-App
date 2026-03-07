@@ -3,6 +3,7 @@ package com.project.demo.Security;
 
 import com.project.demo.Controller.AuthController;
 import com.project.demo.Entity.model.User;
+import com.project.demo.Exception.ResourceNotFoundException;
 import com.project.demo.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -34,7 +35,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
         String email=authUtil.getUsernameFromToken(token);
         if(email!=null || SecurityContextHolder.getContext().getAuthentication()==null){
-            User user=userRepository.findByEmail(email).orElseThrow();
+            User user=userRepository.findByEmail(email).orElseThrow(()->new ResourceNotFoundException("User not found with email: "+email));
             CustomUserDetails userDetails=new CustomUserDetails(user);
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=new UsernamePasswordAuthenticationToken(user,null,userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);

@@ -6,6 +6,7 @@ import com.project.demo.Dto.SignupRequestDto;
 import com.project.demo.Dto.SignupResponseDto;
 import com.project.demo.Entity.enums.Roles;
 import com.project.demo.Entity.model.User;
+import com.project.demo.Exception.UserAlreadyExistsException;
 import com.project.demo.Security.AuthUtil;
 import com.project.demo.Security.CustomUserDetails;
 import com.project.demo.repository.UserRepository;
@@ -31,7 +32,7 @@ public class AuthService {
 
     public  SignupResponseDto signup(SignupRequestDto signupRequestDto) {
         if (userRepository.findByEmail(signupRequestDto.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("User already exists with this email!");
+            throw new UserAlreadyExistsException("User already exists with this email!");
         }
         User user=userRepository.save(User.builder()
                 .name(signupRequestDto.getName())
@@ -42,6 +43,7 @@ public class AuthService {
     }
 
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+
         Authentication authenticationToken=new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(),loginRequestDto.getPassword());
         Authentication authentication=authenticationManager.authenticate(authenticationToken);
         CustomUserDetails customUserDetails= (CustomUserDetails) authentication.getPrincipal();
