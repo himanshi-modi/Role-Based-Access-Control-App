@@ -14,7 +14,7 @@ export const fetchUserContent=async()=>{
 
 export const fetchAdminContent=async()=>{
     const jwt=getJwtToken();
-    const response=await axios.get(`${API_URL}/user`,{
+    const response=await axios.get(`${API_URL}/admin`,{
         headers:{Authorization: `Bearer ${jwt}` },
     });
     return response.data;
