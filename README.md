@@ -134,16 +134,32 @@ The frontend implements:
 - Protected routes
 - Conditional rendering based on user role
 
-## Frontend Functionality
--User Registration (Signup) – Allows new users to register using name, email, and password. Passwords are securely hashed before being stored in the database.
--User Authentication (Login) – Users can log in using email and password. Credentials are verified using Spring Security’s AuthenticationManager and UserDetailsService.
--JWT Token Generation – After successful login, the system generates a signed JSON Web Token (JWT) containing user identification and expiration information.
--JWT-Based Authorization – Protected APIs require a valid JWT token in the request header to allow access.
--Custom JWT Authentication Filter – Intercepts incoming requests, validates the JWT token, extracts the user details, and sets authentication in the Spring Security context.
--Role-Based Access Control (RBAC) – Users are assigned roles and permissions that determine what resources or APIs they can access.
--Secure Password Handling – Passwords are encrypted using BCrypt PasswordEncoder to ensure secure credential storage and verification.
--API Documentation with Swagger – Integrated Swagger UI allows interactive testing and documentation of all backend APIs.
+## Backend Functionalities
 
+- **User Registration (Signup)**  
+  Allows new users to register using name, email, and password. Passwords are securely hashed before being stored in the database.
+
+- **User Authentication (Login)**  
+  Users can log in using email and password. Credentials are verified using Spring Security’s `AuthenticationManager` and `UserDetailsService`.
+
+- **JWT Token Generation**  
+  After successful login, the system generates a signed JSON Web Token (JWT) containing user identification and expiration information.
+
+- **JWT-Based Authorization**  
+  Protected APIs require a valid JWT token in the request header to allow access.
+
+- **Custom JWT Authentication Filter**  
+  Intercepts incoming requests, validates the JWT token, extracts the user details, and sets authentication in the Spring Security SecurityContext.
+
+- **Role-Based Access Control (RBAC)**  
+  Users are assigned roles and permissions that determine what resources or APIs they can access.
+
+- **Secure Password Handling**  
+  Passwords are encrypted using `BCryptPasswordEncoder` to ensure secure credential storage and verification.
+
+- **API Documentation with Swagger**  
+  Integrated Swagger UI allows interactive testing and documentation of all backend APIs.
+  
 ## Running the Project
 
 ### Backend Setup
