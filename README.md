@@ -89,8 +89,8 @@ ADMIN
 
 ### Authentication
 
-POST /auth/register  
-POST /auth/login  
+POST api/auth/signup
+POST api/auth/login  
 
 ### RBAC Endpoints
 
